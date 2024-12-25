@@ -1,0 +1,42 @@
+actor hesap_makinesi {
+  var hucre: Int = 0; // Hesap makinesinin mevcut durumu, başlangıçta sıfır olarak ayarlanır.
+
+  // Toplama işlemini gerçekleştiren fonksiyon. 
+  // Parametre olarak verilen sayıyı (s) "hucre"ye ekler ve yeni değeri döndürür.
+  public func toplama(s: Int) : async Int {
+    hucre += s;
+    hucre
+  };
+
+  // Çıkarma işlemini gerçekleştiren fonksiyon. 
+  // Parametre olarak verilen sayıyı (s) "hucre"den çıkarır ve yeni değeri döndürür.
+  public func cikarma(s:Int) : async Int {
+    hucre -= s;
+    hucre
+  };
+
+  // Çarpma işlemini gerçekleştiren fonksiyon. 
+  // Parametre olarak verilen sayı (s) ile "hucre"yi çarpar ve yeni değeri döndürür.
+  public func carpma(s:Int) : async Int {
+    hucre *= s;
+    hucre
+  };
+
+  // Bölme işlemini gerçekleştiren fonksiyon. 
+  // Parametre olarak verilen sayı (s) sıfır ise `null` döner, 
+  // aksi takdirde "hucre"yi bu sayıya böler ve sonucu döndürür.
+  public func bolme(s:Int) : async ?Int {
+    if (s == 0){
+      null // Bölme işlemi sırasında sıfıra bölünme hatasını önler.
+    }
+    else {
+      hucre /= s;
+      ?hucre // Bölme işleminin sonucunu döner.
+    };
+  };
+
+  // "hucre" değerini sıfırlayan fonksiyon.
+  public func temizle() : async() {
+    hucre := 0; // Hesap makinesini başlangıç durumuna geri döndürür.
+  };
+};
